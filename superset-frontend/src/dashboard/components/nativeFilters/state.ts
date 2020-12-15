@@ -21,14 +21,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setExtraFormData } from 'src/dashboard/actions/nativeFilters';
 import { getInitialFilterState } from 'src/dashboard/reducers/nativeFilters';
 import { ExtraFormData, t } from '@superset-ui/core';
+import { Charts, Layout, RootState } from 'src/dashboard/types';
 import {
-  Charts,
   Filter,
   FilterConfiguration,
   FilterState,
-  Layout,
   NativeFiltersState,
-  RootState,
   TreeItem,
 } from './types';
 import { DASHBOARD_ROOT_ID } from '../../util/constants';
@@ -67,12 +65,12 @@ export function useFilterState(id: string) {
   });
 }
 
-export function useSetExtraFormData(id: string) {
+export function useSetExtraFormData() {
   const dispatch = useDispatch();
   return useCallback(
-    (extraFormData: ExtraFormData) =>
+    (id: string, extraFormData: ExtraFormData) =>
       dispatch(setExtraFormData(id, extraFormData)),
-    [id, dispatch],
+    [dispatch],
   );
 }
 
